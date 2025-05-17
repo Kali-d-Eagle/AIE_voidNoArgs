@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Function Guide</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #e3f2fd); 
+      color: #000000;
+      margin: 0;
+      padding: 0;
+    }
+    body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  /* background: url('./cloud4.png') bottom center/cover no-repeat; */
+  /* background: url('./cloud2.png') center center no-repeat; */
+  background: url('./voidNoArgs.jpg');
+  opacity: 1;
+}
+
+
+body::after {
+  background: url('./raibow.png') top center/contain no-repeat;
+  opacity: 1;
+}
+
+
+
+    header {
+      position: relative;
+      background: url('./reqMyEagle.jpg') center/cover no-repeat;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      /* background: linear-gradient(to bottom right, rgba(0, 64, 128, 0.6), rgba(0, 64, 128, 0.4)); */
+      background: linear-gradient(to bottom right, rgba(229, 229, 253, 0.7), rgba(109, 248, 250, 0.7));
+      backdrop-filter: blur(40px);
+      transition: opacity 4 ease;
+      z-index: 1;
+    }
+
+    header:hover::before{
+      opacity: 0;
+    }
+
+    header h1 {
+      position: relative;
+      z-index: 2;
+      font-size: 3rem;
+      color: #ffffffde;
+      font-weight: 900;
+      letter-spacing: 4px;
+      margin: 0;
+      text-align: center;
+      text-transform: uppercase;
+      text-shadow:
+        0 0 8px #ffffffaa,
+        0 0 12px #00bfff,
+        0 0 24px #1e90ff;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow:
+          0 0 8px #ffffffaa,
+          0 0 12px #00bfff,
+          0 0 24px #1e90ff;
+      }
+      to {
+        text-shadow:
+          0 0 16px #ffffff,
+          0 0 22px #00e0ff,
+          0 0 40px #1ec8ff;
+      }
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      z-index: 1;
+      position: relative;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    h2, h3 {
+      color: #1e88e5;
+    }
+
+    ul {
+      padding-left: 25px;
+    }
+
+    pre {
+      background-color: #f4faff;
+      border-left: 5px solid #3498db;
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 15px;
+    }
+
+    .highlight, .note, .warning {
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin: 20px 0;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      background-color: #e9f4ff;
+      border-left: 5px solid #5dade2;
+    }
+
+    .note {
+      background-color: #eafaf1;
+      border-left: 5px solid #27ae60;
+    }
+
+    .warning {
+      background-color: #fff0f3;
+      border-left: 5px solid #e74c3c;
+    }
+
+    a {
+      color: #1e88e5;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #1565c0;
+      text-decoration: underline;
+    }
+
+    footer {
+      background: linear-gradient(to right, #1e88e5, #1565c0);
+      color: #ffffff;
+      text-align: center;
+      padding: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-top: 3px solid #0d47a1;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      position: relative;
+    }
+
+    code {
+      background-color: #f0f8ff;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 90%;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+
+    .tooltip {
+      position: relative;
+      cursor: help;
+    }
+    
+    .tooltip::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00f2ff;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 7px;
+      white-space: nowrap;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.7s ease-in-out;
+      z-index: 10;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    }
+    
+    .tooltip:hover::after {
+      opacity: 0.7;
+    }
+    
+    
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>AESTHETIC INSTITUTION OF EAGLES</h1>
+  
+  
+</header>
+
+<div class="container">
+  <!-- Your content remains unchanged (already excellent!) -->
+  <!-- All sections: #intro, #void-noargs etc. stay same -->
+  <!-- Just plug in your earlier <section> elements here -->
+
+
+    <section id="intro">
+      <h2>🧠 <span class="tooltip" data-tooltip="Introduction">Intro</span>
+        : <span class="tooltip" data-tooltip="What">Wt</span>
+        is a <span class="tooltip" data-tooltip="Function">F<sup>n</sup></span>
+        ?</h2>
+      <p><span class="tooltip" data-tooltip="function">f<sup>n</sup></span>
+        code ka ek aisa block hota h jo kisi specific kaam k liye banaya jata h. Agr aapko ek hi kaam baar-baar karna h...to uska <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> bana lo — aur jab chahe call karo!</p>
+
+      <div class="highlight">
+        <strong>Real-life Analogy:</strong> Socho ek washing machine ek <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> h: kapde daalo (<span class="tooltip" data-tooltip="input">i/p</span>), dhulai ho jati hai (process), saaf kapde milte h (<span class="tooltip" data-tooltip="output">o/p</span>).
+      </div>
+
+      <h3>💡Y Use <span class="tooltip" data-tooltip="Function's">F<sup>n</sup>'s</span>?</h3>
+      <ul>
+        <li>Code ko reusable banata h</li>
+        <li>Code ko modular <span class="tooltip" data-tooltip="and">n</span> clean banata h</li>
+        <li>Debugging easy hoti h</li>
+        <li>Team work <span class="tooltip" data-tooltip="mein">m</span> helpful hota h</li>
+      </ul>
+
+      <h3>🔢 Types of <span class="tooltip" data-tooltip="functions">f<sup>n</sup>'s</span> in C++</h3>
+      <ul>
+        <li><strong>Void (No <span class="tooltip" data-tooltip="Arguments">args</span>)</strong> – Na <span class="tooltip" data-tooltip="input">i/p</span>, na <span class="tooltip" data-tooltip="output">o/p</span></li>
+        <li><strong>Void (Wid <span class="tooltip" data-tooltip="Arguments">args</span>)</strong> – <span class="tooltip" data-tooltip="input">i/p</span> lekin <span class="tooltip" data-tooltip="output">o/p</span> nhi</li>
+        <li><strong>Return (No <span class="tooltip" data-tooltip="Arguments">args</span>)</strong> – <span class="tooltip" data-tooltip="output">o/p</span> deta h, <span class="tooltip" data-tooltip="input">i/p</span> nhi leta</li>
+        <li><strong>Return (Wid <span class="tooltip" data-tooltip="Arguments">args</span>)</strong> – <span class="tooltip" data-tooltip="input">i/p</span> b leta h, <span class="tooltip" data-tooltip="output">o/p</span> b deta h</li>
+      </ul>
+    </section>
+
+    <!-- Void Function (No Args) -->
+
+  
+    <section id="void-noargs">
+        <h2>🔹 1. Void <span class="tooltip" data-tooltip="Function">F<sup>n</sup></span> (No <span class="tooltip" data-tooltip="Arguments">args</span>)</h2>
+        <p>
+          Yeh <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> sabse basic aur simple hota h<br>
+          <strong>“Void”</strong> ka <span class="tooltip" data-tooltip="matlab">mtb</span> hota h: <em>kuch b return nhi krega</em>.<br>
+          Aur <strong>“No <span class="tooltip" data-tooltip="Arguments">args</span>”</strong> ka <span class="tooltip" data-tooltip="matlab">mtb</span>: <em>andar koi value pass nhi karni</em>.<br>
+          So, yeh <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> sirf apna kaam krega — bina kisi <span class="tooltip" data-tooltip="input">i/p</span> ke, bina kisi result ke.
+        </p>
+      
+        <div class="highlight">
+            <strong>💡 Real-Life Analogy :</strong><br>
+            Sochiye aap roz subh <strong>mirror ke saamne khud ko dekhte ho</strong>.<br><br>
+          
+            👀 Aap kuch bi <span class="tooltip" data-tooltip="input">i/p</span> nhi dete mirror ko — na naam, na koi data.<br>
+            💭 Mirror aapko kuch calculate karke return b nhi krta — sirf aapka chehra dikhata h.<br>
+            🔁 Har bar jab b dekho, woh same kaam karega — bina kisi <span class="tooltip" data-tooltip="input">i/p</span> ke, bina kisi result return kiye.<br><br>
+          
+            Yhi hota h <strong>void <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> wid no <span class="tooltip" data-tooltip="Arguments">args</span></strong>:
+            <ul>
+              <li>🪞 Mirror = <span class="tooltip" data-tooltip="function">f<sup>n</sup></span></li>
+              <li>👀 Aap dekhte ho = <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> call</li>
+              <li>❌ Koi input nhi dia</li>
+              <li>❌ Koi output ya return <span class="tooltip" data-tooltip="value">val</span> nhi mila</li>
+              <li>✅ Sirf ek action hua — reflection dikh gya (kaam complete)</li>
+            </ul>
+          </div>
+          
+      
+        <h3>🔧 Syntax (Structure)</h3>
+        <pre><code>
+void functionName() {
+     // Yeh block woh kaam karega
+}</code></pre>
+      
+        <p><strong>Breakdown:</strong></p>
+        <ul>
+          <li><code>void</code>: <span class="tooltip" data-tooltip="Function">F<sup>n</sup></span> kuch return nhi krega</li>
+          <li><code>functionName()</code>: <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> ka naam + empty brackets (no <span class="tooltip" data-tooltip="input">i/p</span>)</li>
+          <li><code>{ }</code>: <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> ka kaam yahan likha jata h</li>
+        </ul>
+      
+        <div class="note">
+          <strong>Use Kb Kare?</strong><br>
+          Jab aapko sirf koi display ya <span class="tooltip" data-tooltip="message">msg</span> dikhana ho,<br>
+          ya kuch initialize karna ho — lekin kisi <span class="tooltip" data-tooltip="input">i/p</span> ki zarurat na ho.
+        </div>
+      
+        <h3>✅ <span class="tooltip" data-tooltip="Eaxmple">eg</span> 1: Welcome <span class="tooltip" data-tooltip="message">msg!</span></h3>
+        <pre><code>
+void showWelcome() {
+     cout << "🚀 Welcome to C++ Programming!" << endl;
+}</code></pre>
+        <p><strong>Explanation:</strong> Yeh sirf ek <span class="tooltip" data-tooltip="message">msg</span> screen pe dikhata h. Koi <span class="tooltip" data-tooltip="input">i/p</span> nhi, koi result nhi.</p>
+      
+        <h3>✅ <span class="tooltip" data-tooltip="Eaxmple">eg</span>: Print Stars (Design Element)</h3>
+        <pre><code>
+void printStars() {
+     cout << "***************" << endl;
+}</code></pre>
+        <p>Yeh separator ya design ke liye use hota hai — helpful fr formatting .</p>
+      
+      
+        <h3>💡 Kaise Use Karte Hain?</h3>
+        <pre><code>
+int main() {
+    showWelcome();   // function call
+    printStars();    // function call
+    showCredits();   // function call
+
+    return 0;
+}</code></pre>
+        <p><strong>Explanation:</strong> <span class="tooltip" data-tooltip="Function">F<sup>n</sup></span> call karne ke liye sirf uska naam likho aur brackets lagao. Bas, kaam ho gya!</p>
+      
+        <div class="warning">
+          ⚠️ <strong>Common Mistakes:</strong>
+          <ul>
+            <li>Call krte waqt return type likna (❌ <code>void hello();</code> // wrong if defining)</li>
+            <li>Call karte waqt <code>;</code> bhool jana (❌ <code>showWelcome()</code>)</li>
+            <li><code>main()</code> ke andar <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> call na karna – <span class="tooltip" data-tooltip="function">f<sup>n</sup></span> bana diya, lekin call nhi kia</li>
+          </ul>
+        </div>
+      
+        <h3>🧠 Short Summary</h3>
+        <ul>
+          <li><strong>No <span class="tooltip" data-tooltip="input">i/p</span>, no <span class="tooltip" data-tooltip="output">o/p</span></strong></li>
+          <li><strong>Kaam fix hota h</strong> – har bar whi karega</li>
+          <li>Mostly <strong>message dikhane ya log karne</strong> ke liye use hota h</li>
+          <li><strong>Easy to create n perfect for beginners!</strong></li>
+        </ul>
+      
+      </section>
+
+</div>
+
+<footer>
+  A PPG! Course from ur Sarrr on Functions
+</footer>
+
+
+
+</body>
+</html> 
+
