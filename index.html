@@ -225,7 +225,53 @@ body::after {
     .tooltip:hover::after {
       opacity: 0.7;
     }
+
+
     
+      .floating-arrow {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, #00f2ff, #1e88e5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none !important; /* ✨ Ensure no underline ever appears */
+        box-shadow:
+          0 0 8px #00f2ff,
+          0 0 16px #1ec8ff,
+          0 0 24px #5ecbff;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        z-index: 9999;
+        animation: floatPulse 3s ease-in-out infinite;
+      }
+      
+      .floating-arrow:hover {
+        transform: scale(1.15) rotate(10deg);
+        box-shadow:
+          0 0 12px #00ffff,
+          0 0 24px #1ec8ff,
+          0 0 36px #5ecbff,
+          0 0 48px #7feaff;
+        text-decoration: none !important; /* ✨ Still no underline on hover */
+      }
+      
+      .arrow-icon {
+        font-size: 28px;
+        color: #ffffff;
+        text-shadow:
+          0 0 6px #00f2ff,
+          0 0 10px #1e90ff;
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      .floating-arrow:hover .arrow-icon {
+        transform: scale(1.2);
+      }
+  
     
   </style>
 </head>
@@ -374,7 +420,9 @@ int main() {
   A PPG! Course from ur Sarrr on Functions
 </footer>
 
-
+<a href="https://example.com" class="floating-arrow" target="_blank" title="Fly to Destination ✨">
+  <span class="arrow-icon">➤</span>
+</a>
 
 </body>
 </html> 
